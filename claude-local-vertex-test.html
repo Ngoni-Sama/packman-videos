@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Claude Local Vertex-Like Test — PACKMAN Clean Run</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --card: #171a21;
+    --card-border: #262a34;
+    --text: #e6e8ec;
+    --muted: #9aa3b2;
+    --accent: #f58237;
+    --accent-soft: rgba(245,130,55,0.15);
+    --green: #35c77e;
+    --green-soft: rgba(53,199,126,0.12);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+  }
+  header {
+    padding: 36px 24px 20px;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+  header h1 { margin: 0 0 6px; font-size: 27px; }
+  header p { margin: 0; color: var(--muted); font-size: 15px; }
+  .badge-row { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+  .badge {
+    font-size: 12px; font-weight: 600; padding: 5px 11px; border-radius: 100px;
+    background: var(--green-soft); color: var(--green); border: 1px solid rgba(53,199,126,0.3);
+  }
+  .summary { max-width: 980px; margin: 0 auto 10px; padding: 0 24px; }
+  .summary-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px; margin: 18px 0 30px;
+  }
+  .stat { background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; padding: 12px 14px; }
+  .stat .n { font-size: 22px; font-weight: 700; color: var(--green); }
+  .stat .l { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+
+  main { max-width: 980px; margin: 0 auto; padding: 0 24px 60px; }
+  .module-head { display: flex; align-items: baseline; gap: 10px; margin: 36px 0 16px; }
+  .module-head h2 { margin: 0; font-size: 20px; }
+  .module-head .pill {
+    font-size: 11px; text-transform: uppercase; letter-spacing: .05em;
+    background: var(--accent-soft); color: var(--accent); padding: 3px 9px; border-radius: 100px; font-weight: 600;
+  }
+  .card {
+    background: var(--card); border: 1px solid var(--card-border); border-radius: 12px;
+    margin-bottom: 16px; overflow: hidden; padding: 18px;
+  }
+  .card p { font-size: 13.5px; color: #c7cbd4; margin: 0 0 14px; }
+  .card video {
+    width: 100%; border-radius: 8px; background: #000; display: block; margin-bottom: 14px;
+  }
+  .chapters-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted);
+    margin: 4px 0 8px;
+  }
+  .chapter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 8px;
+  }
+  .chapter-btn {
+    display: flex; align-items: center; gap: 10px;
+    background: #1c2029; border: 1px solid var(--card-border); border-radius: 8px;
+    padding: 9px 12px; cursor: pointer; text-align: left; color: var(--text);
+    font-family: inherit; font-size: 12.5px; transition: background .12s ease, border-color .12s ease;
+  }
+  .chapter-btn:hover { background: #242933; border-color: var(--accent); }
+  .chapter-btn.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+  .chapter-btn .time {
+    flex-shrink: 0; font-variant-numeric: tabular-nums; font-weight: 700;
+    font-size: 11.5px; color: var(--accent); background: rgba(245,130,55,0.1);
+    padding: 2px 6px; border-radius: 5px; min-width: 44px; text-align: center;
+  }
+  .chapter-btn.active .time { background: var(--accent); color: var(--bg); }
+
+  footer {
+    max-width: 980px; margin: 0 auto; padding: 0 24px 50px; color: var(--muted); font-size: 12.5px;
+  }
+  footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Claude Local Vertex-Like Test — PACKMAN Clean Run</h1>
+  <p>Local test environment on packman.localhost (Vertex-style setup, run outside the hosted Vertex platform) · 2026‑10‑05, 20:16–20:39 · candidate "Sipho Democandidate" / CND‑Northwind Bank‑2026‑00014 · requisition SR‑NWB‑0001 · placement PLC‑00002</p>
+  <div class="badge-row">
+    <span class="badge">No dead ends</span>
+    <span class="badge">No validation-error detours</span>
+    <span class="badge">No rejection loop</span>
+    <span class="badge">8/8 + 7/7 stages, straight through</span>
+    <span class="badge">Click a chapter to jump the video</span>
+  </div>
+</header>
+
+<div class="summary">
+  <div class="summary-grid">
+    <div class="stat"><div class="n">2</div><div class="l">clips recorded</div></div>
+    <div class="stat"><div class="n">8 / 8</div><div class="l">Module 1 stages</div></div>
+    <div class="stat"><div class="n">7 / 7</div><div class="l">Module 2 stages</div></div>
+    <div class="stat"><div class="n">~23 min</div><div class="l">total runtime</div></div>
+  </div>
+</div>
+
+<main>
+
+  <div class="module-head"><h2>Module 1 — Recruitment &amp; Vetting</h2><span class="pill">energyatwork</span></div>
+
+  <div class="card">
+    <p>Recruiter creates Sipho Democandidate on SR-NWB-0001 with valid data from the start. ClicknCheck's "not enabled" dialog is dismissed immediately — a known, intentional local-environment gate. Checklist documents are uploaded via the app's own API and the candidate advanced to "With ClicknCheck" directly, mirroring a completed live vetting hand-off. Document Approver 1 and Final Pack Approver each approve all 3 items with no rejection detour. Pack signed off, sent to the customer, and accepted — candidate reaches <b>Placed</b>.</p>
+    <video id="vidM1" controls preload="metadata"><source src="20261005-201638-CLEAN-M1-recruitment-vetting.mp4" type="video/mp4"></video>
+    <div class="chapters-label">Jump to</div>
+    <div class="chapter-grid" id="chaptersM1"></div>
+  </div>
+
+  <div class="module-head"><h2>Module 2 — Contracting &amp; Onboarding</h2><span class="pill">hrc</span></div>
+
+  <div class="card">
+    <p>Placement PLC-00002 picked up straight from the Module 1 hand-off. Contract created directly with the correct "Project Contract of Employment" template (pack auto-populates with the matching Annexure) and submitted for approval. Contract Approver approves on the first pass. Offer sent, accepted by the candidate. Signing scheduled and completed online. Induction scheduled and marked complete. Exported and handed over to Sage300 — all 7 stages reached without a wrong turn.</p>
+    <video id="vidM2" controls preload="metadata"><source src="20261005-202945-CLEAN-M2-contracting-onboarding.mp4" type="video/mp4"></video>
+    <div class="chapters-label">Jump to</div>
+    <div class="chapter-grid" id="chaptersM2"></div>
+  </div>
+
+</main>
+
+<footer>
+  Test accounts used: eaw.recruiter, eaw.docapprover, eaw.finalapprover, eaw.teamleader (granted EAW HRC Access for this environment), eaw.contractapprover — all password <code>Packman#Seed2026</code>.
+</footer>
+
+<script>
+function fmt(s) {
+  var m = Math.floor(s / 60), sec = Math.round(s % 60);
+  return m + ':' + (sec < 10 ? '0' : '') + sec;
+}
+
+function buildChapters(videoId, containerId, chapters) {
+  var video = document.getElementById(videoId);
+  var container = document.getElementById(containerId);
+  var buttons = [];
+
+  chapters.forEach(function (ch, i) {
+    var btn = document.createElement('button');
+    btn.className = 'chapter-btn';
+    btn.innerHTML = '<span class="time">' + fmt(ch.t) + '</span><span>' + ch.label + '</span>';
+    btn.addEventListener('click', function () {
+      video.currentTime = ch.t;
+      video.play();
+    });
+    container.appendChild(btn);
+    buttons.push(btn);
+  });
+
+  video.addEventListener('timeupdate', function () {
+    var idx = 0;
+    for (var i = 0; i < chapters.length; i++) {
+      if (video.currentTime >= chapters[i].t) idx = i;
+    }
+    buttons.forEach(function (b, i) { b.classList.toggle('active', i === idx); });
+  });
+}
+
+buildChapters('vidM1', 'chaptersM1', [
+  { t: 0,   label: 'Login & open New Candidate' },
+  { t: 115, label: 'Candidate created' },
+  { t: 136, label: 'Checklist docs uploaded (vetting sim)' },
+  { t: 149, label: 'Awaiting Document Sign Off' },
+  { t: 307, label: 'DA1 approves all items' },
+  { t: 500, label: 'FPA approves all items' },
+  { t: 533, label: 'Final Sign Off → Fulfilled' },
+  { t: 561, label: 'Pack sent to customer' },
+  { t: 770, label: 'Customer accepts → Placed' }
+]);
+
+buildChapters('vidM2', 'chaptersM2', [
+  { t: 0,   label: 'Placement opened' },
+  { t: 69,  label: 'Contract created' },
+  { t: 104, label: 'Submitted for approval' },
+  { t: 140, label: 'Contract approved' },
+  { t: 179, label: 'Offer sent' },
+  { t: 223, label: 'Offer accepted' },
+  { t: 264, label: 'Signing scheduled' },
+  { t: 292, label: 'Sent for signature' },
+  { t: 422, label: 'Candidate signs' },
+  { t: 453, label: 'Induction scheduled' },
+  { t: 564, label: 'Induction fulfilled' },
+  { t: 578, label: 'Sage300 handover' }
+]);
+</script>
+
+</body>
+</html>
