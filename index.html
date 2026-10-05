@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Claude Local Vertex-Like Test — PACKMAN Clean Run</title>
 <style>
   :root {
@@ -28,7 +29,7 @@
     max-width: 980px;
     margin: 0 auto;
   }
-  header h1 { margin: 0 0 6px; font-size: 27px; }
+  header h1 { margin: 0 0 6px; font-size: 27px; line-height: 1.2; }
   header p { margin: 0; color: var(--muted); font-size: 15px; }
   .badge-row { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
   .badge {
@@ -46,7 +47,7 @@
 
   main { max-width: 980px; margin: 0 auto; padding: 0 24px 60px; }
   .module-head { display: flex; align-items: baseline; gap: 10px; margin: 36px 0 16px; }
-  .module-head h2 { margin: 0; font-size: 20px; }
+  .module-head h2 { margin: 0; font-size: 20px; line-height: 1.25; }
   .module-head .pill {
     font-size: 11px; text-transform: uppercase; letter-spacing: .05em;
     background: var(--accent-soft); color: var(--accent); padding: 3px 9px; border-radius: 100px; font-weight: 600;
@@ -55,7 +56,7 @@
     background: var(--card); border: 1px solid var(--card-border); border-radius: 12px;
     margin-bottom: 16px; overflow: hidden; padding: 18px;
   }
-  .card p { font-size: 13.5px; color: #c7cbd4; margin: 0 0 14px; }
+  .card p { font-size: 13.5px; color: #c7cbd4; margin: 0 0 14px; max-width: 68ch; }
   .card video {
     width: 100%; border-radius: 8px; background: #000; display: block; margin-bottom: 14px;
   }
@@ -71,7 +72,7 @@
   .chapter-btn {
     display: flex; align-items: center; gap: 10px;
     background: #1c2029; border: 1px solid var(--card-border); border-radius: 8px;
-    padding: 9px 12px; cursor: pointer; text-align: left; color: var(--text);
+    padding: 12px; min-height: 44px; cursor: pointer; text-align: left; color: var(--text);
     font-family: inherit; font-size: 12.5px; transition: background .12s ease, border-color .12s ease;
   }
   .chapter-btn:hover { background: #242933; border-color: var(--accent); }
@@ -82,6 +83,49 @@
     padding: 2px 6px; border-radius: 5px; min-width: 44px; text-align: center;
   }
   .chapter-btn.active .time { background: var(--accent); color: var(--bg); }
+
+  .flow-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted);
+    margin: 0 0 14px;
+  }
+  .flow {
+    display: flex; align-items: flex-start; margin: 0 0 22px;
+    overflow-x: auto; padding-bottom: 4px;
+  }
+  .flow-step {
+    display: flex; flex-direction: column; align-items: center;
+    flex: 1 0 86px; min-width: 86px; position: relative; padding: 0 2px;
+  }
+  .flow-step:not(:last-child)::after {
+    content: ''; position: absolute; top: 15px; left: calc(50% + 17px); right: calc(-50% + 17px);
+    height: 2px; background: var(--accent); opacity: .55; z-index: 0;
+  }
+  .flow-step.done:not(:last-child)::after { opacity: 1; }
+  .flow-circle {
+    width: 32px; height: 32px; min-width: 44px; min-height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; background: var(--accent); color: var(--bg);
+    border: none; font-size: 13px; font-weight: 700; z-index: 1; cursor: pointer;
+    font-family: inherit; transition: filter .12s ease, transform .12s ease;
+  }
+  .flow-circle:hover { filter: brightness(1.12); transform: scale(1.04); }
+  .flow-step.active .flow-circle { outline: 2px solid var(--text); outline-offset: 2px; }
+  .flow-text {
+    font-size: 11px; color: var(--muted); margin-top: 8px; text-align: center;
+    line-height: 1.3; max-width: 92px;
+  }
+  .flow-step.active .flow-text { color: var(--accent); font-weight: 600; }
+
+  .flow-detail {
+    background: #1c2029; border: 1px solid var(--card-border); border-radius: 10px;
+    padding: 14px 16px; margin: 0 0 22px;
+  }
+  .flow-detail-num {
+    font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--accent);
+    font-weight: 700; margin-bottom: 4px;
+  }
+  .flow-detail-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .flow-detail-text { font-size: 13.5px; color: #c7cbd4; max-width: 68ch; }
 
   footer {
     max-width: 980px; margin: 0 auto; padding: 0 24px 50px; color: var(--muted); font-size: 12.5px;
@@ -118,6 +162,9 @@
 
   <div class="card">
     <p>Recruiter creates Sipho Democandidate on SR-NWB-0001 with valid data from the start. ClicknCheck's "not enabled" dialog is dismissed immediately — a known, intentional local-environment gate. Checklist documents are uploaded via the app's own API and the candidate advanced to "With ClicknCheck" directly, mirroring a completed live vetting hand-off. Document Approver 1 and Final Pack Approver each approve all 3 items with no rejection detour. Pack signed off, sent to the customer, and accepted — candidate reaches <b>Placed</b>.</p>
+    <div class="flow-label">Process flow</div>
+    <div class="flow" id="flowM1"></div>
+    <div class="flow-detail" id="flowDetailM1"></div>
     <video id="vidM1" controls preload="metadata"><source src="20261005-201638-CLEAN-M1-recruitment-vetting.mp4" type="video/mp4"></video>
     <div class="chapters-label">Jump to</div>
     <div class="chapter-grid" id="chaptersM1"></div>
@@ -127,6 +174,9 @@
 
   <div class="card">
     <p>Placement PLC-00002 picked up straight from the Module 1 hand-off. Contract created directly with the correct "Project Contract of Employment" template (pack auto-populates with the matching Annexure) and submitted for approval. Contract Approver approves on the first pass. Offer sent, accepted by the candidate. Signing scheduled and completed online. Induction scheduled and marked complete. Exported and handed over to Sage300 — all 7 stages reached without a wrong turn.</p>
+    <div class="flow-label">Process flow</div>
+    <div class="flow" id="flowM2"></div>
+    <div class="flow-detail" id="flowDetailM2"></div>
     <video id="vidM2" controls preload="metadata"><source src="20261005-202945-CLEAN-M2-contracting-onboarding.mp4" type="video/mp4"></video>
     <div class="chapters-label">Jump to</div>
     <div class="chapter-grid" id="chaptersM2"></div>
@@ -142,6 +192,14 @@
 function fmt(s) {
   var m = Math.floor(s / 60), sec = Math.round(s % 60);
   return m + ':' + (sec < 10 ? '0' : '') + sec;
+}
+
+function currentIndex(video, points) {
+  var idx = 0;
+  for (var i = 0; i < points.length; i++) {
+    if (video.currentTime >= points[i].t) idx = i;
+  }
+  return idx;
 }
 
 function buildChapters(videoId, containerId, chapters) {
@@ -162,11 +220,61 @@ function buildChapters(videoId, containerId, chapters) {
   });
 
   video.addEventListener('timeupdate', function () {
-    var idx = 0;
-    for (var i = 0; i < chapters.length; i++) {
-      if (video.currentTime >= chapters[i].t) idx = i;
-    }
+    var idx = currentIndex(video, chapters);
     buttons.forEach(function (b, i) { b.classList.toggle('active', i === idx); });
+  });
+
+  return buttons;
+}
+
+function buildFlow(videoId, containerId, detailId, stages) {
+  var video = document.getElementById(videoId);
+  var container = document.getElementById(containerId);
+  var detail = document.getElementById(detailId);
+  var steps = [];
+  var lastIdx = -1;
+
+  function showDetail(i) {
+    if (i === lastIdx) return;
+    lastIdx = i;
+    var st = stages[i];
+    detail.innerHTML =
+      '<div class="flow-detail-num">Step ' + (i + 1) + ' of ' + stages.length + '</div>' +
+      '<div class="flow-detail-title">' + st.label + '</div>' +
+      '<div class="flow-detail-text">' + st.desc + '</div>';
+  }
+
+  stages.forEach(function (st, i) {
+    var step = document.createElement('div');
+    step.className = 'flow-step done';
+
+    var circle = document.createElement('button');
+    circle.className = 'flow-circle';
+    circle.type = 'button';
+    circle.textContent = '✓';
+    circle.setAttribute('aria-label', 'Jump to stage ' + (i + 1) + ': ' + st.label + ' (' + fmt(st.t) + ')');
+    circle.addEventListener('click', function () {
+      video.currentTime = st.t;
+      video.play();
+      showDetail(i);
+    });
+
+    var text = document.createElement('div');
+    text.className = 'flow-text';
+    text.textContent = (i + 1) + '. ' + st.label;
+
+    step.appendChild(circle);
+    step.appendChild(text);
+    container.appendChild(step);
+    steps.push(step);
+  });
+
+  showDetail(0);
+
+  video.addEventListener('timeupdate', function () {
+    var idx = currentIndex(video, stages);
+    steps.forEach(function (s, i) { s.classList.toggle('active', i === idx); });
+    showDetail(idx);
   });
 }
 
@@ -180,6 +288,42 @@ buildChapters('vidM1', 'chaptersM1', [
   { t: 533, label: 'Final Sign Off → Fulfilled' },
   { t: 561, label: 'Pack sent to customer' },
   { t: 770, label: 'Customer accepts → Placed' }
+]);
+
+buildFlow('vidM1', 'flowM1', 'flowDetailM1', [
+  { t: 0,   label: 'Draft',
+    desc: "Someone new wants a job! We write down their name and their papers. Nothing has happened yet — it's just a blank page waiting to be filled in." },
+  { t: 115, label: 'Request Submitted',
+    desc: "We put the page in a basket and say \"please check this for me!\" Now it's waiting its turn to be looked at." },
+  { t: 136, label: 'With ClicknCheck',
+    desc: "A helper checks that the person really is who they say they are — like checking an ID card at the door before you're let inside." },
+  { t: 149, label: 'Awaiting Document Sign Off',
+    desc: "All the papers are uploaded! Now a grown-up looks at each one and says \"yes, this looks good\" or \"no, please fix this.\"" },
+  { t: 307, label: 'Awaiting Final Sign Off',
+    desc: "A SECOND grown-up double-checks everything the first grown-up already said yes to — like a teacher checking another teacher's homework grading." },
+  { t: 533, label: 'Fulfilled',
+    desc: "Both grown-ups said yes! We staple every paper together into one big folder. This folder is called \"the pack.\"" },
+  { t: 561, label: 'Awaiting External Approval',
+    desc: "We mail the folder to the customer and ask, \"is this person okay with you?\" Now everyone waits for them to open it and decide." },
+  { t: 770, label: 'Placed',
+    desc: "The customer said YES! 🎉 The new person officially has the job now, and we move on to getting their work papers ready." }
+]);
+
+buildFlow('vidM2', 'flowM2', 'flowDetailM2', [
+  { t: 0,   label: 'Placed',
+    desc: "The person just got the job! Now instead of \"will they get hired,\" the question becomes \"let's get their contract ready.\"" },
+  { t: 69,  label: 'Contract Pack',
+    desc: "We print out the contract papers — the ones that say what the job is, what it pays, and how long it lasts." },
+  { t: 104, label: 'Approval',
+    desc: "A manager reads the contract carefully to make sure it was written correctly, before anyone is allowed to sign it." },
+  { t: 179, label: 'Offer',
+    desc: "We send the contract to the new person and ask, \"do you accept this?\" They can say yes, say no, or say \"let me think about it.\"" },
+  { t: 264, label: 'Signing',
+    desc: "The person signs their name on the contract — just like signing a birthday card — to make everything official." },
+  { t: 453, label: 'Induction',
+    desc: "We show the new person around: where to sit, who to meet, how things work. Like a tour on the first day of school." },
+  { t: 578, label: 'Handed Over (Sage300)',
+    desc: "We tell the payroll computer, \"this person is ready to be paid!\" and the whole journey from application to employee is finished. ✅" }
 ]);
 
 buildChapters('vidM2', 'chaptersM2', [
